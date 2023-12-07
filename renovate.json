@@ -17,7 +17,7 @@
     "local_generic": {
       "defaultRegistryUrlTemplate": "file://dependencies/versiontracker.json",
       "transformTemplates": [
-        "$map($, function($v) { { \"version\": $v.version } })"
+        "{ $map($, function($v) { { \"version\": $v.version } }) }"
       ]
     }
   },
