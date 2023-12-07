@@ -1,8 +1,12 @@
-[
-    {
-        "version": "77"
-    },
-    {
-        "version": "76"
-    }
-]
+{
+    "releases": [
+      {
+        "version": "77",
+        "sourceUrl": "link1"
+      },
+      {
+        "version": "76",
+        "sourceUrl": "link2"
+      }
+    ]
+}

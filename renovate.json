@@ -15,9 +15,9 @@
   ],
   "customDatasources": {
     "local_generic": {
-      "defaultRegistryUrlTemplate": "file://dependencies/versiontracker.json",
+      "defaultRegistryUrlTemplate": "file://versiontracker.json",
       "transformTemplates": [
-        "{ $map($, function($v) { { \"version\": $v.version } }) }"
+        "{ \"releases\": $map($, function($v) { { \"version\": $v.version, \"sourceUrl\": $v.filelink } }) }"
       ]
     }
   },
