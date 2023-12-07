@@ -1,0 +1,25 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "regexManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^test_package_list.json$"],
+      "matchStringsStrategy": "combination",
+      "datasourceTemplate": "custom.local_generic",
+      "matchStrings": [
+        "\"extension\":\"(?<depName>.*)\"",
+        "\"version\":\"(?<currentValue>.*)\""
+      ]
+    }
+  ],
+  "customDatasources": {
+    "local_generic": {
+      "defaultRegistryUrlTemplate": "file://dependencies/versiontracker.json",
+      "transformTemplates": [
+        "$map($, function($v) { { \"version\": $v.version } })"
+      ]
+    }
+  },
+  "prHourlyLimit": 5
+}

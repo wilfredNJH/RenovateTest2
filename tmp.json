@@ -1,0 +1,64 @@
+
+// $map($, function($v) { { "version": $v.version, "sourceUrl": $v.filelink } })
+
+
+
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "dependencyDashboard": true,
+    "regexManagers": [
+      {
+        "customType": "regex",
+        "fileMatch": ["^test_package_list.json$"],
+        "matchStringsStrategy": "combination",
+        "datasourceTemplate": "custom.local_generic",
+        "matchStrings": [
+          "\"extension\":\"(?<depName>.*)\"",
+          "\"version\":\"(?<currentValue>.*)\""
+        ]
+      }
+    ],
+    "customDatasources": {
+      "local_generic": {
+        "defaultRegistryUrlTemplate": "file://versiontracker.json",
+        "transformTemplates": [
+          "$map($, function($v) { { \"version\": $v.version, \"sourceUrl\": $v.filelink } })"
+        ]
+      }
+    },
+    "prHourlyLimit": 5
+  }
+
+
+
+
+  {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "dependencyDashboard": true,
+    "regexManagers": [
+      {
+        "customType": "regex",
+        "fileMatch": ["^test_package_list.json$"],
+        "matchStringsStrategy": "combination",
+        "matchStrings": [
+          "\"extension\":\"(?<depName>.*)\"",
+          "\"version\":\"(?<currentValue>.*)\""
+        ],
+        "datasourceTemplate": "custom.nginx"
+      }
+    ],
+    "customDatasources": {
+      "nginx": {
+        "defaultRegistryUrlTemplate": "https://nginx.org/download",
+        "format": "html"
+      }
+    },
+    "packageRules": [
+      {
+        "matchDatasources": ["custom.nginx"],
+        "extractVersion": "(?<depName>.*)-(?<currentValue>.+).tar.gz"
+      }
+    ],
+    "prHourlyLimit": 5
+  }
+  
